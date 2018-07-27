@@ -1,12 +1,20 @@
 import React from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Entypo} from "@expo/vector-icons"
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#ADD8E6',
+  },
+  newFont:{
+    fontSize: 40,
+    textAlign: 'center',
+    color: '#FF8C00',
+    fontFamily: 'Verdana',
+    fontWeight: 'bold', 
   },
 });
 
@@ -19,13 +27,14 @@ class HomeScreen extends React.Component {
       return (
         <View style={styles.container}>
           <TextInput/>
-          <Text>Open up App.js to start working on your app!</Text>
-          <Text>Changes you make will automatically reload.</Text>
-          <Text>Shake your phone to open the developer menu.</Text>
+          <Text style={styles.newFont}>Welcome to the earthquake app! </Text>
+        
+        <Entypo name="arrow-with-circle-right" size={80} color='#FF8C00'/>
+
           <Button
-            title="Go to Loading screen"
+            title="Ready to begin!"
             onPress={() =>
-              navigate('Loading', { name: 'PS', style: styles.container })
+              navigate('Entry', {name: 'PS, style: style.container'})
             }
           />
         </View>

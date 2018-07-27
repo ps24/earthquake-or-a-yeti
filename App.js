@@ -5,8 +5,8 @@ import HomeScreen from './components/HomeScreen';
 import LoadingScreen from './components/LoadingScreen';
 
 const App = createStackNavigator({
-  Home: { screen: HomeScreen },
-  Loading: { screen: LoadingScreen },
+  Home: HomeScreen,
+  Loading: LoadingScreen,
 });
 
 export default App;

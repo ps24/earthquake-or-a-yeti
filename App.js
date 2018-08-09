@@ -1,13 +1,17 @@
-// import React from 'react';
-import App from './app/index';
-// import { Text, View } from 'react-native';
-// import { createStackNavigator } from 'react-navigation';
-// import HomeScreen from './components/HomeScreen';
-// import LoadingScreen from './components/LoadingScreen';
+import React from 'react';
+import EStyleSheet from 'react-native-extended-stylesheet';
+import { createStackNavigator } from 'react-navigation';
 
-// const App = createStackNavigator({
-//   Home: HomeScreen,
-//   Loading: LoadingScreen,
-// });
+import Home from './app/screens/Home';
+import Loading from './app/screens/Loading';
+
+EStyleSheet.build({
+  $primaryBlue: '#4F6D7A',
+});
+
+const App = createStackNavigator({
+  Home: Home,
+  Loading: Loading,
+});
 
 export default App;

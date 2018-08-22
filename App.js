@@ -6,7 +6,7 @@ import Home from './app/screens/Home';
 import Loading from './app/screens/Loading';
 
 EStyleSheet.build({
-  $primaryBlue: '#4F6D7A',
+  $primaryBlue: '#ADD8E6',
 });
 
 const App = createStackNavigator({

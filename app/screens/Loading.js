@@ -1,27 +1,42 @@
 import React from 'react';
-import { StatusBar, Text, View } from 'react-native';
+import { Image, ImageBackground, StatusBar, Text, View } from 'react-native';
 
-import Container from '../components/Container';
-import SuperimposedImages from '../components/SuperimposedImages';
-
-const loadingBackground = require('./images/radar_200.png');
-const loadingTopImage = require('./images/ripple_200.gif');
+import containerStyles from '../components/Container/styles';
+import superimposedImageStyles from '../components/SuperimposedImages/styles';
 
 class Loading extends React.Component {
   static navigationOptions = {
     title: 'Loading...',
   };
+  constructor(props) {
+    super(props);
+    this.state = {
+      loadingBackground: require('./images/radar_200.png'),
+      loadingTopImage: require('./images/ripple_200.gif')
+    };
+  }
   render() {
     const { navigation } = this.props;
-    const name = navigation.getParam('name', 'NO NAME');
+    const { loadingBackground, loadingTopImage } = this.state;
+    const zipcode = navigation.getParam('zipcode', 'NO ZIPCODE');
     return (
-      <Container>
+      <View style={[containerStyles.view, containerStyles.containerColor]}>
         <StatusBar translucent={false} barStyle="light-content" />
         <View>
-          <Text>Checking nearby faults and known monster sightings, {name}...</Text>
-          <SuperimposedImages backgroundImg={loadingBackground} topImg={loadingTopImage} />
+          <Text style={containerStyles.text}>Checking nearby faults and known monster sightings around {zipcode}...</Text>
+          <ImageBackground
+            source={loadingBackground}
+            style={superimposedImageStyles.background}
+            resizeMode='contain'
+          >
+            <Image
+              source={loadingTopImage}
+              style={superimposedImageStyles.top}
+              resizeMode='contain'
+            />
+          </ImageBackground>
         </View>
-      </Container>
+      </View>
     );
   }
 }

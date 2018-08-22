@@ -14,7 +14,7 @@ class Home extends React.Component {
           <Button
             title="Go to Loading screen"
             onPress={() =>
-              navigate('Loading', { name: 'P+S' })
+              navigate('Loading', { zipcode: '91780' })
             }
           />
         </View>

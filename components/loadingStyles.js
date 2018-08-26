@@ -16,5 +16,15 @@ export default EStyleSheet.create({
   },
   text: {
     textAlign: 'center',
+  },
+  backgroundImage: {
+    alignSelf: 'center',
+    width: '60%',
+    height: '60%'
+  },
+  topImage: {
+    alignSelf: 'center',
+    width: '100%',
+    height: '100%'
   }
 });

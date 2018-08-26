@@ -1,8 +1,7 @@
 import React from 'react';
 import { Image, ImageBackground, StatusBar, Text, View } from 'react-native';
 
-import containerStyles from '../components/Container/styles';
-import superimposedImageStyles from '../components/SuperimposedImages/styles';
+import loadingStyles from './loadingStyles';
 
 class Loading extends React.Component {
   static navigationOptions = {
@@ -20,18 +19,18 @@ class Loading extends React.Component {
     const { loadingBackground, loadingTopImage } = this.state;
     const zipcode = navigation.getParam('zipcode', 'NO ZIPCODE');
     return (
-      <View style={[containerStyles.view, containerStyles.containerColor]}>
+      <View style={[loadingStyles.view, loadingStyles.containerColor]}>
         <StatusBar translucent={false} barStyle="light-content" />
         <View>
-          <Text style={containerStyles.text}>Checking nearby faults and known monster sightings around {zipcode}...</Text>
+          <Text style={loadingStyles.text}>Checking nearby faults and known monster sightings around {zipcode}...</Text>
           <ImageBackground
             source={loadingBackground}
-            style={superimposedImageStyles.background}
+            style={loadingStyles.backgroundImage}
             resizeMode='contain'
           >
             <Image
               source={loadingTopImage}
-              style={superimposedImageStyles.top}
+              style={loadingStyles.topImage}
               resizeMode='contain'
             />
           </ImageBackground>

@@ -1,37 +1,31 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Image, Text, KeyboardAvoidingView, Button } from 'react-native';
 import ZipCodeForm from './ZipCodeForm';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
-const monsters = [
-    {
-        monster: 'Big Foot',
-        image: require('../images/bigfoot.png')
-    },
-    {
-        monster: 'Godzilla',
-        image: require('../images/godzilla.png')
-    }, 
-    {
-        monster: 'Lochness Monster',
-        image: require('../images/lochness.png')
-    }, 
-    {
-        monster: 'Ogre',
-        image: require('../images/ogre.png')
-    },
-    {
-        monster: 'Yeti',
-        image: require('../images/yeti.png')
-    },
-];
+import monsters from '../Monsters';
 
 export default class ZipCode extends Component {
    
     constructor(props) {
         super(props);
         this.state = {
-            activeMonsterIndex: 0
+            activeMonsterIndex: 0,
+            zipcodeEntry: ''
         };
+        this.handleCheckPress = this.handleCheckPress.bind(this);
+    }
+
+    handleCheckPress = () => {
+        const { navigate } = this.props.navigation;
+        navigate('Loading', { zipcodeEntry: this.state.zipcodeEntry });
+    }
+
+    handleTextChange = (zipcodeEntry) => {
+        this.setState({
+            activeMonsterIndex: this.state.activeMonsterIndex,
+            zipcodeEntry: zipcodeEntry
+        });
     }
  
     nextMonster = () => {
@@ -71,23 +65,20 @@ export default class ZipCode extends Component {
                         title = { 'Next monster' }
                         onPress = { this.nextMonster} />
 
-                    <Text style = { styles.subtitle }>
-                        { 'An app made to determine \nearthquake activity' }
-                    </Text>
                 </View>
 
                 <View>
-                    <ZipCodeForm />
+                    <ZipCodeForm onPress={this.handleCheckPress} onChangeText={this.handleTextChange}/>
                 </View>
             </KeyboardAvoidingView>
         );
     }
 }
 
-const styles = StyleSheet.create ({
+const styles = EStyleSheet.create ({
     container: {
         flex: 1,
-        backgroundColor: '#34495e',
+        backgroundColor: '$backgroundColor',
     },
     mainContainer: {
         alignItems: 'center',
@@ -95,7 +86,7 @@ const styles = StyleSheet.create ({
         justifyContent: 'center'
     },
     largeTitle: {
-        color: '#3498db',
+        color: '$textColor',
         textAlign: 'center',
         fontSize: 40,
         width: 350,

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, TextInput, TouchableOpacity, Text, StatusBar } from 'react-native';
+import { StyleSheet, View, TextInput, TouchableOpacity, Text, StatusBar, Button } from 'react-native';
 
-export default class ZipCodeForm extends Component {
+class ZipCodeForm extends Component {
     render() {
         return (
             <View style = { styles.container } >
@@ -14,11 +14,14 @@ export default class ZipCodeForm extends Component {
                     placeholderTextColor = "rgba(252,252,252,0.3)"
                     returnKeyType = "done"
                     keyboardType = "phone-pad"
+                    onChangeText={this.props.onChangeText}
                     style = { styles.input }
                 />
                 
                 <TouchableOpacity style = { styles.buttonContainer }>
-                    <Text style = { styles.buttonText }>CHECK NOW</Text> 
+                    <Button 
+                        title = 'CHECK NOW'
+                        style={ styles.buttonText } onPress={this.props.onPress} /> 
                 </TouchableOpacity>
                 
             </View>
@@ -40,7 +43,7 @@ const styles = StyleSheet.create({
 
     },
     buttonContainer: {
-        backgroundColor: '#2980b9',
+        backgroundColor: '#ecf0f1',
         paddingVertical: 15, /* height of the 'CHECK' box */
         borderRadius: 12
     },
@@ -49,4 +52,6 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontWeight: '700'
     }
-})
+});
+
+export default ZipCodeForm;

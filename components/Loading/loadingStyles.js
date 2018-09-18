@@ -22,7 +22,6 @@ export default EStyleSheet.create({
     color: '$textColor',
     fontSize: 30,
     fontWeight: '900',
-
   },
   backgroundImage: {
     alignSelf: 'center',

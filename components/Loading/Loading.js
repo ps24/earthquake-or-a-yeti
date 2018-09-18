@@ -14,6 +14,19 @@ class Loading extends React.Component {
       loadingTopImage: require('../images/ripple_200.gif')
     };
   }
+
+  componentDidMount() {
+    const { navigate } = this.props.navigation;
+    const monsterIndex = this.props.navigation.getParam('monsterIndex', 0);
+    this.next = setInterval(() => {
+      navigate('Monster', { monsterIndex: monsterIndex });
+    }, 5000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.next);
+  }
+
   render() {
     const { navigation } = this.props;
     const { loadingBackground, loadingTopImage } = this.state;

@@ -3,7 +3,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { createStackNavigator } from 'react-navigation';
 import ZipCode from './components/ZipCode/ZipCode';
 import Loading from './components/Loading/Loading';
-
+import Monster from './components/Monster/Monster';
 
 EStyleSheet.build({
   $backgroundColor: '#34495e',
@@ -12,7 +12,8 @@ EStyleSheet.build({
 
 const App = createStackNavigator({
   ZipCode: { screen: ZipCode },
-  Loading: { screen: Loading },  
+  Loading: { screen: Loading }, 
+  Monster: { screen: Monster },  
 });
 
 export default App;

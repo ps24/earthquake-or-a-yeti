@@ -18,7 +18,10 @@ export default class ZipCode extends Component {
 
     handleCheckPress = () => {
         const { navigate } = this.props.navigation;
-        navigate('Loading', { zipcodeEntry: this.state.zipcodeEntry });
+        navigate('Loading',{
+            zipcodeEntry: this.state.zipcodeEntry,
+            monsterIndex: this.state.activeMonsterIndex,
+        });
     }
 
     handleTextChange = (zipcodeEntry) => {
@@ -53,6 +56,7 @@ export default class ZipCode extends Component {
             <KeyboardAvoidingView behavior = "padding" style = { styles.container }>
                 <View style = { styles.mainContainer }>
                     <Image 
+                        resizeMode="contain"
                         style = { styles.yetiImage }
                         source = { activeMonster.image }>
                     </Image>

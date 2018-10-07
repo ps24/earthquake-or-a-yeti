@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import loadingStyles from './loadingStyles';
+import EarthquakeFound from '../EarthquakeFound/EarthquakeFound';
 
 const UPDATE_INTERVAL = 1000; // 1 sec
 
@@ -76,9 +77,29 @@ class Loading extends React.Component {
           {Platform.OS == 'android' && <ProgressBarAndroid progress={this.state.progress} styleAttr="Horizontal" />}
           {Platform.OS == 'ios' && <ProgressViewIOS progress={this.state.progress} progressViewStyle="bar" />}
         </View>
+
+        <TouchableOpacity style = { styles.buttonContainer }>
+                    <Button 
+                        title = 'NEXT PAGE'
+                        style={ styles.buttonText } onPress={this.handleCheckPress} /> 
+        </TouchableOpacity>
       </View>
     );
+    
   }
 }
+
+const styles = StyleSheet.create({
+  buttonContainer: {
+      backgroundColor: '#ecf0f1',
+      paddingVertical: 15, /* height of the 'CHECK' box */
+      borderRadius: 12
+  },
+  buttonText: {
+      textAlign: 'center',
+      color: '#FFFFFF',
+      fontWeight: '700'
+  }
+});
 
 export default Loading;

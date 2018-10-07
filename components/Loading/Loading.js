@@ -1,7 +1,8 @@
 import React from 'react';
-import { Image, ImageBackground, StatusBar, Text, View } from 'react-native';
+import { Image, ImageBackground, StatusBar, Text, View, TouchableOpacity, StyleSheet, Button } from 'react-native';
 
 import loadingStyles from './loadingStyles';
+import EarthquakeFound from '../EarthquakeFound/EarthquakeFound';
 
 class Loading extends React.Component {
   static navigationOptions = {
@@ -14,6 +15,11 @@ class Loading extends React.Component {
       loadingTopImage: require('../images/ripple_200.gif')
     };
   }
+  handleCheckPress = () => {
+    const { navigate } = this.props.navigation;
+    navigate('EarthquakeFound', { Loading: this.state.Loading });
+}
+
   render() {
     const { navigation } = this.props;
     const { loadingBackground, loadingTopImage } = this.state;
@@ -35,9 +41,29 @@ class Loading extends React.Component {
             />
           </ImageBackground>
         </View>
+
+        <TouchableOpacity style = { styles.buttonContainer }>
+                    <Button 
+                        title = 'NEXT PAGE'
+                        style={ styles.buttonText } onPress={this.handleCheckPress} /> 
+        </TouchableOpacity>
       </View>
     );
+    
   }
 }
+
+const styles = StyleSheet.create({
+  buttonContainer: {
+      backgroundColor: '#ecf0f1',
+      paddingVertical: 15, /* height of the 'CHECK' box */
+      borderRadius: 12
+  },
+  buttonText: {
+      textAlign: 'center',
+      color: '#FFFFFF',
+      fontWeight: '700'
+  }
+});
 
 export default Loading;

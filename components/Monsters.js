@@ -19,4 +19,8 @@ export default monsters = [
         monster: 'Yeti',
         image: require('./images/yeti.png')
     },
+    {
+        monster: 'King Kong',
+        image: require('./images/kingkong.png')
+    },
 ];

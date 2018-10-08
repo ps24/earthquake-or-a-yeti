@@ -10,6 +10,9 @@ import {
   View,
 } from 'react-native';
 
+import loadingBackground from '../images/radar_200.png';
+import loadingTopImage from '../images/ripple_200.gif';
+
 import loadingStyles from './loadingStyles';
 import EarthquakeFound from '../EarthquakeFound/EarthquakeFound';
 
@@ -22,8 +25,6 @@ class Loading extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loadingBackground: require('../images/radar_200.png'),
-      loadingTopImage: require('../images/ripple_200.gif'),
       progress: 0,
       timePassed: 0,
     };
@@ -31,6 +32,10 @@ class Loading extends React.Component {
   }
 
   componentDidMount() {
+    // this.setState({
+    //   progress: 0,
+    //   timePassed: 0,
+    // });
     this.next = setInterval(this.checkProgress, UPDATE_INTERVAL);
   }
 
@@ -46,7 +51,14 @@ class Loading extends React.Component {
     });
     if (timePassed == totalTime) {
       clearInterval(this.next); // only way to reliably clear interval before navigate away
-      navigate('Monster', { monsterIndex: monsterIndex });
+      const random = Math.random();
+      if (random < 0.5)
+      {
+        navigate('Monster', { monsterIndex: monsterIndex }); 
+      } else {
+        const zipcodeEntry = this.props.navigation.getParam('zipcodeEntry', 'NO ZIPCODE');
+        navigate('EarthquakeFound', {zipcodeEntry});
+      }
     }
   }
 
@@ -56,7 +68,6 @@ class Loading extends React.Component {
 
   render() {
     const { navigation } = this.props;
-    const { loadingBackground, loadingTopImage } = this.state;
     const zipcode = navigation.getParam('zipcodeEntry', 'NO ZIPCODE');
     return (
       <View style={[loadingStyles.view, loadingStyles.containerColor]}>
@@ -77,29 +88,11 @@ class Loading extends React.Component {
           {Platform.OS == 'android' && <ProgressBarAndroid progress={this.state.progress} styleAttr="Horizontal" />}
           {Platform.OS == 'ios' && <ProgressViewIOS progress={this.state.progress} progressViewStyle="bar" />}
         </View>
-
-        <TouchableOpacity style = { styles.buttonContainer }>
-                    <Button 
-                        title = 'NEXT PAGE'
-                        style={ styles.buttonText } onPress={this.handleCheckPress} /> 
-        </TouchableOpacity>
       </View>
     );
     
   }
 }
 
-const styles = StyleSheet.create({
-  buttonContainer: {
-      backgroundColor: '#ecf0f1',
-      paddingVertical: 15, /* height of the 'CHECK' box */
-      borderRadius: 12
-  },
-  buttonText: {
-      textAlign: 'center',
-      color: '#FFFFFF',
-      fontWeight: '700'
-  }
-});
 
 export default Loading;

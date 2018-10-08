@@ -19,11 +19,13 @@ export default class EarthquakeFound extends Component {
 
     handleCheckPress = () => {
         const { navigate } = this.props.navigation;
-        navigate('ZipCode', { EarthquakeFound: this.state.EarthquakeFound });
+        navigate('ZipCode');
     }
 
     
     render() {
+        const zipcode = this.props.navigation.getParam('zipcodeEntry', 'NO ZIPCODE');
+
         return (
             <View style = {styles.entireWrapper}>  {/* wrapper takes up the entire screen */}
 
@@ -45,7 +47,7 @@ export default class EarthquakeFound extends Component {
 
                 
                     <View style = {styles.infoWrapper1}>
-                        <RunInfo title = "Earthquake Epicenter" 
+                        <RunInfo title = {zipcode + " Earthquake Epicenter"} 
                             value = "-3.352, 62.353"
                             ref = {(info) => this.distanceInfo = info} 
                         />
